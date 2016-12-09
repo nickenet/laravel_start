@@ -2,15 +2,19 @@
 
 namespace App;
 
-// Импортирования пространства имён...
+use App\Task;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
+class User extends Authenticatable {
 
-    use Authenticatable,
-        Authorizable,
-        CanResetPassword;
-
-    // Другие Eloquent свойства...
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 
     /**
      * Получить все задачи пользователя.
